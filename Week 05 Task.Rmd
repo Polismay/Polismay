@@ -1,0 +1,79 @@
+---
+title: "Week 05: World Data Investigation"
+author: "Polisma Yadav"
+date: "10/12/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Notes
+
+·       Add Labels with labs() function
+
+·       Eg:
+
+ggplot(mpg, aes(displ, hwy)) +
+
+  geom_point(aes(color = class)) +
+
+  geom_smooth(se = FALSE) +
+
+·       labs(title = "Fuel efficiency generally decreases with engine size")
+
+·       Can also add subtitle and caption, just use those words instead of or with title
+
+·       Can also be used to replace short variables on x-axis and y-axis with more detailed descriptions. Use X/Y instead of title
+
+·       Incase you need to use mathematical equation instead of string, use quote() within labs ()
+
+·       There are two main ways to get your plots out of R and into your final write-up: ggsave() and knitr. ggsave() will save the most recent plot to disk:
+
+ggplot(mpg, aes(displ, hwy)) + geom_point()
+
+```{r}
+library(tidyverse)
+install.packages("devtools")
+library(devtools)
+devtools::install_github("drsimonj/ourworldindata")
+child_mortality_rate <- ourworldindata::child_mortality
+child_mortality_rate
+```
+
+
+```{r}
+library(mosaic)
+child_mortality_rate2 <- filter(child_mortality_rate, year == "2010" )
+```
+
+```{r}
+child_mortality_rate3 <- filter(child_mortality_rate2, population >= 126535920) 
+View(child_mortality_rate3)
+
+```
+
+```{r}
+child_mortality_rate3 %>% 
+  arrange(country)
+View(child_mortality_rate3)
+```
+
+```{r}
+child_mortality_rate3 %>% 
+  summarise(aveMortlaity = mean(child_mort))
+```
+
+```{r}
+library(ggplot2)
+ggplot(child_mortality_rate3, aes(x=child_mort, y=deaths_per_woman)) +
+  geom_point(size = 6, color = "red", pch = 18) +
+  labs(title="Child mortality rate compared to deaths per woman of top 10 most populated countries in the world", 
+       x = "child mortality rate", y="deaths per woman") +
+  theme_bw()
+```
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
