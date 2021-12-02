@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @Polismay
-- 👀 I’m am from Nepal.
+- 👀 I’m from Nepal.
 - 🌱 I’m currently doing bachelors in Accounting at BYUI.
 - 📫 You can reach me at https://www.linkedin.com/in/polismay/ or yad17001@byui.edu
 
